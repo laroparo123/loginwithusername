@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Homepage</h2>
+<!-- prettier-ignore -->
+<p>Welcome to My Site, {% if user.is_authenticated %}{{ user.username }}{% else %}visitor{% endif %}!</p>
+<p><strong>Total users registred:</strong>{{ count }}</p>
+{% endblock %}
