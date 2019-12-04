@@ -17,10 +17,11 @@
 
 <body>
 
-  <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+  <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo"
+    style="background-image: url({% static 'img/library.jpg' %})">
     <div class="wrapper wrapper--w680">
       <div class="card card-1">
-        <div class="card-heading" style="background-image: url({% static 'img/library.jpg' %});"></div>
+        <div class="card-heading" style="background-image: url({% static 'img/logo.jpg' %})"></div>
         <div class="card-body">
           <h2 class="title">Registration Info</h2>
           <form method="POST">
@@ -42,7 +43,7 @@
             </p>
             {% endfor %}
             <div class="p-t-20">
-              <button class="btn btn--radius btn--green" type="submit">Signup</button>
+              <button class="btn btn--radius btn--green" type="submit" background="#e50914;">Signup</button>
             </div>
             <!-- <div class="input-group">
               <input class="input--style-1" type="text" placeholder="NAME" name="name">

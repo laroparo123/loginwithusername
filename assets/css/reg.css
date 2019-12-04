@@ -206,18 +206,18 @@ h6 {
   font-weight: 700;
 }
 
-.bttn--radius {
+.btn--radius {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
 
-.bttn--green {
-  background: #57b846;
+.btn--green {
+  background: #e50914;
 }
 
 .bttn--green:hover {
-  background: #4dae3c;
+  background: #e50914;;
 }
 
 /* ==========================================================================

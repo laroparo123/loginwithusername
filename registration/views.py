@@ -8,9 +8,10 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-
+from django.core.mail import send_mail
 from registration.forms import SignUpForm
 from registration.tokens import account_activation_token
+from django.conf import settings
 
 
 def home(request):
@@ -33,10 +34,12 @@ def signup(request):
             message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'uid':  urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject, message)
+            from_email=[settings.EMAIL_HOST_USER]
+            to_email=[user.email]
+            send_mail(subject=subject,from_email=from_email,recipient_list=to_email,message=message,fail_silently=False)
 
             return redirect('/account_activation_sent')
     else:
@@ -50,6 +53,7 @@ def account_activation_sent(request):
 
 def activate(request, uidb64, token):
     try:
+        # uid: force_text(urlsafe_base64_encode(force_bytes(user.pk)))
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
@@ -70,5 +74,5 @@ def secret_page(request):
     return render(request, 'secret_page.html')
 
 
-class SecretPage(LoginRequiredMixin, TemplateView):
-    template_name = 'secret_page.html'
+# class SecretPage(LoginRequiredMixin, TemplateView):
+#     template_name = 'secret_page.html'

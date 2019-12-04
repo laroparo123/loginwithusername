@@ -26,6 +26,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'prabhavlamichhane77@gmail.com'
+EMAIL_HOST_PASSWORD = '@@##$$INSERT123@@##$$'
+EMAIL_PORT = 587 
+EMAIL_USE_TLS =  True
 
 # Application definition
 
@@ -81,7 +86,7 @@ WSGI_APPLICATION = 'bookifysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'books',
+        'NAME': 'user',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost'
@@ -135,4 +140,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
